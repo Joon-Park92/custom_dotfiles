@@ -86,15 +86,8 @@ let python_highlight_all=1
 syntax on
 
 
-if has('gui_running')
-  set background=dark
-  colorscheme solarized
-else
-"  set background=dark
-"  colorscheme solarized
-  set t_Co=256
-  colorscheme zenburn
-endif
+set t_Co=256
+silent! colorscheme zenburn
 
 
 "File browsing
