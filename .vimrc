@@ -109,15 +109,37 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_python_binary_path = 'python'
+" let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_min_num_of_chars_for_completion = 1
 " let g:ycm_confirm_extra_conf = 0
 " let g:ycm_key_list_select_completion = ['', '']
 " let g:ycm_key_list_previous_completion = ['', '']
-" let g:ycm_autoclose_preview_window_after_completion = 1
 " let g:ycm_warning_symbol = '>*'
 
-" nnoremap "<leader>d" :YcmCompleter GoTo<CR>
-" nnoremap gg :YcmCompleter GoToImprecise
-" nnoremap "<leader>d" :YcmCompleter GoToDeclaration
-nnoremap "<leader>d" :YcmCompleter GoToDefinition<CR>
+" nnoremap <leader>d :YcmCompleter GoTo<CR>
+nnoremap gg :YcmCompleter GoToImprecise<CR>
+" nnoremap <leader>d :YcmCompleter GoToDeclaration
+" nnoremap <leader>d :vsplit \| YcmCompleter GoToDefinition<CR>
+nnoremap <leader>d :tab split \| YcmCompleter GoToDefinition<CR>
+nnoremap K :YcmCompleter GetDoc<CR>
 " nnoremap t :YcmCompleter GetType
 " nnoremap p :YcmCompleter GetParent 
+
+" set conceallevel=2
+" set concealcursor=vin
+" let g:clang_snippets=1
+" let g:clang_conceal_snippets=1
+" " The single one that works with clang_complete
+" let g:clang_snippets_engine='clang_complete'
+" 
+" " Complete options (disable preview scratch window, longest removed to aways
+" " show menu)
+" set completeopt=menu,menuone
+" 
+" " Limit popup menu height
+" set pumheight=20
+" 
+" " SuperTab completion fall-back 
+" let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
+" let g:ycm_autoclose_preview_window_after_completion = 0
