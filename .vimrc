@@ -6,21 +6,22 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'nvie/vim-flake8'
-Plugin 'jnurmine/Zenburn'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'tmhedberg/SimpylFold'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'jnurmine/Zenburn'
 Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
-" Plugin 'lambdalisue/vim-pyenv'
-Plugin 'ervandew/supertab'
+Plugin 'garbas/vim-snipmate'
+Plugin 'mattn/emmet-vim'
 Plugin 'exvim/ex-matchit'
 Plugin 'tpope/vim-surround'
+
+" Plugin 'nvie/vim-flake8'
+" Plugin 'ervandew/supertab'
+" Plugin 'lambdalisue/vim-pyenv'
 
 call vundle#end()
 
@@ -90,16 +91,31 @@ set t_Co=256
 silent! colorscheme zenburn
 
 
+" NERDTree options
 "File browsing
-nmap <C-F> :NERDTreeFind<CR>
-nmap <C-n> :NERDTreeToggle<CR>
+" nmap <C-f> :NERDTreeFind<CR>
+" nmap <C-n> :NERDTreeToggle<CR>
+nmap <C-f> :NERDTreeTabsFind<CR>
+nmap <C-n> :NERDTreeTabsToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__'] "ignore files in NERDTree
 
 
-"SuperTab
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+" "SuperTab
+" let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
+" SuperTab completion fall-back 
+" let g:SuperTabMappingForward = '<c-space>'
+" let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
+" let g:ycm_autoclose_preview_window_after_completion = 0
 
 
+" "Flake8
+" let g:flake8_cmd="/usr/local/bin/flake8"
+" let g:flake8_show_in_file=1   " show
+" let g:flake8_max_markers=500  " maximum # of markers to show(500 is default)
+
+
+" CtrlP options
 "ignore redundant directiories
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_working_path_mode = 'r'
@@ -108,23 +124,33 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$'
   \ }
 
+
+" YCM options
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_auto_trigger = 1
+let g:ycm_key_list_select_completion = ['<C-j>', '<tab>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<s-tab>']
+let g:ycm_error_symbol = '>>'
+let g:ycm_warning_symbol = '*>'
 let g:ycm_python_binary_path = 'python'
+
 " let g:ycm_autoclose_preview_window_after_completion = 1
 " let g:ycm_min_num_of_chars_for_completion = 1
 " let g:ycm_confirm_extra_conf = 0
 " let g:ycm_key_list_select_completion = ['', '']
 " let g:ycm_key_list_previous_completion = ['', '']
-" let g:ycm_warning_symbol = '>*'
 
-" nnoremap <leader>d :YcmCompleter GoTo<CR>
-nnoremap gg :YcmCompleter GoToImprecise<CR>
-" nnoremap <leader>d :YcmCompleter GoToDeclaration
-" nnoremap <leader>d :vsplit \| YcmCompleter GoToDefinition<CR>
-nnoremap <leader>d :tab split \| YcmCompleter GoToDefinition<CR>
+nnoremap <leader>dd :tab split \| YcmCompleter GoTo<CR>
+nnoremap <leader>d :YcmCompleter GoTo<CR>
+nnoremap <leader>t :YcmCompleter GetType<CR>
 nnoremap K :YcmCompleter GetDoc<CR>
-" nnoremap t :YcmCompleter GetType
-" nnoremap p :YcmCompleter GetParent 
+nnoremap <leader>n :YcmCompleter GoToReferences<CR>
+
+" nnoremap <leader>g :tabnew \| YcmCompleter GoTo<CR>
+" nnoremap <leader>d :YcmCompleter GoToDefinition<CR>
+" nnoremap <leader>d :YcmCompleter GoToDeclaration<CR>
+" nnoremap <leader>p :YcmCompleter GetParent<CR>
 
 " set conceallevel=2
 " set concealcursor=vin
@@ -139,7 +165,3 @@ nnoremap K :YcmCompleter GetDoc<CR>
 " 
 " " Limit popup menu height
 " set pumheight=20
-" 
-" " SuperTab completion fall-back 
-" let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
-" let g:ycm_autoclose_preview_window_after_completion = 0
