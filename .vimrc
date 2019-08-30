@@ -12,7 +12,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'jnurmine/Zenburn'
 Plugin 'kien/ctrlp.vim'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -117,6 +118,9 @@ let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__'] "ignore files in NERDTree
 " let g:flake8_cmd="/usr/local/bin/flake8"
 " let g:flake8_show_in_file=1   " show
 " let g:flake8_max_markers=500  " maximum # of markers to show(500 is default)
+
+" Airline options
+let g:airline#extensions#tabline#enabled = 1
 
 
 " CtrlP options
