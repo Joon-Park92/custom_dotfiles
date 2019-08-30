@@ -14,7 +14,11 @@ Plugin 'jnurmine/Zenburn'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
+
+Plugin 'humiaozuzu/TabBar'
 Plugin 'mattn/emmet-vim'
 Plugin 'exvim/ex-matchit'
 Plugin 'tpope/vim-surround'
