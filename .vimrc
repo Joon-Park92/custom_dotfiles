@@ -173,3 +173,8 @@ nnoremap <leader>n :YcmCompleter GoToReferences<CR>
 " 
 " " Limit popup menu height
 " set pumheight=20
+
+" Tabbar
+nnoremap <leader>q :bd<CR>
+nnoremap <leader>qq :TbToggle<CR>
+let g:Tb_SplitToEdge = 0
