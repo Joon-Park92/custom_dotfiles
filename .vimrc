@@ -14,6 +14,7 @@ Plugin 'jnurmine/Zenburn'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -121,7 +122,9 @@ let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__'] "ignore files in NERDTree
 
 " Airline options
 let g:airline#extensions#tabline#enabled = 1
-
+let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_theme='simple'
 
 " CtrlP options
 "ignore redundant directiories
@@ -149,8 +152,8 @@ let g:ycm_python_binary_path = 'python'
 " let g:ycm_key_list_select_completion = ['', '']
 " let g:ycm_key_list_previous_completion = ['', '']
 
-nnoremap <leader>dd :tab split \| YcmCompleter GoTo<CR>
 nnoremap <leader>d :YcmCompleter GoTo<CR>
+nnoremap <leader>dd :tab split \| YcmCompleter GoTo<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
 nnoremap K :YcmCompleter GetDoc<CR>
 nnoremap <leader>n :YcmCompleter GoToReferences<CR>
@@ -175,6 +178,9 @@ nnoremap <leader>n :YcmCompleter GoToReferences<CR>
 " set pumheight=20
 
 " Tabbar
-nnoremap <leader>q :bd<CR>
+" This allows buffers to be hidden if you've modified a buffer.
+set hidden
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nnoremap <leader>q :bp <BAR> bd #<CR>
 nnoremap <leader>qq :TbToggle<CR>
-let g:Tb_SplitToEdge = 0
