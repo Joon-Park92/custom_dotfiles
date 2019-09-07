@@ -20,11 +20,12 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 
-Plugin 'humiaozuzu/TabBar'
 Plugin 'mattn/emmet-vim'
-Plugin 'exvim/ex-matchit'
 Plugin 'tpope/vim-surround'
 
+Plugin 'exvim/ex-matchit'
+" Plugin 'gabesoft/vim-ags'
+" Plugin 'maksimr/vim-jsbeautify'
 " Plugin 'nvie/vim-flake8'
 " Plugin 'ervandew/supertab'
 " Plugin 'lambdalisue/vim-pyenv'
@@ -123,7 +124,7 @@ let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__'] "ignore files in NERDTree
 " Airline options
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-" let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='simple'
 
 " CtrlP options
@@ -131,7 +132,7 @@ let g:airline_theme='simple'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$',
+  \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$\|__pycache__$',
   \ 'file': '\v\.(exe|so|dll)$'
   \ }
 
@@ -182,5 +183,13 @@ nnoremap <leader>n :YcmCompleter GoToReferences<CR>
 set hidden
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
+nnoremap <leader>w :w<CR>
+nnoremap <leader>t :bnext<CR>
+nnoremap <leader><S-t> :bprevious<CR>
 nnoremap <leader>q :bp <BAR> bd #<CR>
 nnoremap <leader>qq :TbToggle<CR>
+
+
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+let g:html_indent_inctags = "address,article,aside,audio,blockquote,canvas,dd,div,dl,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,hr,main,nav,noscript,ol,output,p,pre,section,table,tfoot,ul,video"
