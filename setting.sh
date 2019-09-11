@@ -17,8 +17,15 @@ cp ~/custom_dotfiles/.ycm_extra_conf.py ~/.vim/.ycm_extra_conf.py
 cp ~/custom_dotfiles/.vimrc ~/.vimrc
 touch ~/.vimrc
 vim +PluginInstall +qall 
+
+# flake-8 dir remapping
 ln -s ~/.vim/bundle/vim-flake8/ftplugin ~/.vim/bundle/vim-flake8/plugin
-python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
+
+# for javascript ycm / nodejs to node remapping
+sudo apt-get install nodejs npm
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+
+python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --ts-completer
 
 
 # git setting
