@@ -2,7 +2,9 @@ apt-get install sudo
 sudo apt-get update -y
 sudo apt-get install wget curl vim 
 
-sudo apt-get install zsh git -y
+# install silver-searcher / zsh / git
+sudo apt-get install silversearcher-ag zsh git -y
+
 git clone https://github.com/Joon-Park92/custom_dotfiles.git ~/custom_dotfiles
 
 # Vundle
@@ -21,7 +23,7 @@ vim +PluginInstall +qall
 # flake-8 dir remapping
 ln -s ~/.vim/bundle/vim-flake8/ftplugin ~/.vim/bundle/vim-flake8/plugin
 
-# for javascript ycm / nodejs to node remapping
+# ycm for javascript / nodejs to node remapping
 sudo apt-get install nodejs npm
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 
