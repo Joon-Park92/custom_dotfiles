@@ -17,7 +17,9 @@ cp ~/custom_dotfiles/.ycm_extra_conf.py ~/.vim/.ycm_extra_conf.py
 cp ~/custom_dotfiles/.vimrc ~/.vimrc
 touch ~/.vimrc
 vim +PluginInstall +qall 
+ln -s ~/.vim/bundle/vim-flake8/ftplugin ~/.vim/bundle/vim-flake8/plugin
 python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
+
 
 # git setting
 git config --global user.email "sunjun1225@gmail.com"
@@ -26,4 +28,3 @@ git config --global user.name "Sean Park"
 # zsh
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 chsh -s $(which zsh)
-
