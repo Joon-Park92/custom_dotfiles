@@ -119,14 +119,14 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-" let g:syntastic_loc_list_height = 4 " max error line
+let g:syntastic_loc_list_height = 1 " max error line
 let g:syntastic_python_checkers = ['python']
 " let g:syntastic_python_checkers = ['pylint']
 
 " flake-8
 " nnoremap <leader>c :so ~/.vim/bundle/vim-flake8/ftplugin/python_flake8.vim<CR> \| :call flake8#Flake8()<CR>
-" nnoremap <leader>c :call flake8#Flake8()<CR>
-" nnoremap <leader>cc :call flake8#Flake8UnplaceMarkers()<CR>
+nnoremap <leader>c :call flake8#Flake8()<CR>
+nnoremap <leader>cc :call flake8#Flake8UnplaceMarkers()<CR>
 let g:flake8_quickfix_height=4
 let g:flake8_show_in_file=1   " show
 let g:flake8_max_markers=500  " maximum # of markers to show(500 is default)
