@@ -2,8 +2,8 @@ apt-get install sudo
 sudo apt-get update -y
 sudo apt-get install wget curl vim 
 
-# install silver-searcher / zsh / git
-sudo apt-get install silversearcher-ag zsh git -y
+# install silver-searcher / zsh / git / tmux
+sudo apt-get install silversearcher-ag zsh git tmux -y
 
 git clone https://github.com/Joon-Park92/custom_dotfiles.git ~/custom_dotfiles
 
@@ -20,6 +20,9 @@ cp ~/custom_dotfiles/.vimrc ~/.vimrc
 touch ~/.vimrc
 vim +PluginInstall +qall 
 
+# tmux config
+cp ~/custom_dotfiles/.tmux.conf ~/.tmux.conf
+
 # flake-8 dir remapping
 ln -s ~/.vim/bundle/vim-flake8/ftplugin ~/.vim/bundle/vim-flake8/plugin
 
@@ -28,7 +31,6 @@ sudo apt-get install nodejs npm
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --ts-completer
-
 
 # git setting
 git config --global user.email "sunjun1225@gmail.com"
