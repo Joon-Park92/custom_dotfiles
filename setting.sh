@@ -32,9 +32,8 @@ sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --ts-completer
 
-# git setting
-git config --global user.email "sunjun1225@gmail.com"
-git config --global user.name "Sean Park"
+# git
+cp ~/custom_dotfiles/.gitconfig ~/.gitconfig
 
 # zsh
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
