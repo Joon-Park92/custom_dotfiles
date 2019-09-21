@@ -3,7 +3,7 @@ sudo apt-get update -y
 sudo apt-get install wget curl vim 
 
 # install silver-searcher / zsh / git / tmux
-sudo apt-get install silversearcher-ag zsh git tmux -y
+sudo apt-get install silversearcher-ag zsh git tmux tree -y
 
 git clone https://github.com/Joon-Park92/custom_dotfiles.git ~/custom_dotfiles
 
