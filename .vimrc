@@ -41,8 +41,9 @@ set clipboard=unnamed
 set term=screen-256color
 
 " move row unit
-noremap j gj
-noremap k gk
+" noremap j gj
+" noremap k gk
+nnoremap <leader>4 :nohl<CR> 
 
 " split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -165,7 +166,9 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$\|__pycache__$',
   \ 'file': '\v\.(exe|so|dll)$'
   \ }
-
+nmap <leader>bb :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
 
 " YCM options
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
