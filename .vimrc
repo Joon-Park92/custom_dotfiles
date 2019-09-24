@@ -39,11 +39,12 @@ set splitbelow
 set splitright
 set clipboard=unnamed
 set term=screen-256color
+set pastetoggle=<leader>2
+nnoremap <leader>4 :nohl<CR> 
 
 " move row unit
 " noremap j gj
 " noremap k gk
-nnoremap <leader>4 :nohl<CR> 
 
 " split navigations
 nnoremap <C-J> <C-W><C-J>
