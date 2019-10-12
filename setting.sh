@@ -32,6 +32,7 @@ sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 # install js-beautify
 sudo npm -g install js-beautify
+cp ~/custom_dotfiles/.editorconfig ~/.vim/
 
 python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --ts-completer
 
