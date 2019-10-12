@@ -216,4 +216,11 @@ nnoremap <leader>n :YcmCompleter GoToReferences<CR>
 " let g:html_indent_script1 = "inc"
 " let g:html_indent_style1 = "inc"
 " let g:html_indent_inctags = "address,article,aside,audio,blockquote,canvas,dd,div,dl,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,hr,main,nav,noscript,ol,output,p,pre,section,table,tfoot,ul,video"
+
+let g:user_emmet_mode='n'    "only enable normal mode functions.
+" let g:user_emmet_mode='inv'  "enable all functions, which is equal to
+" let g:user_emmet_mode='a'    "enable all function in all mode.
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
