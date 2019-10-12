@@ -35,11 +35,12 @@ call vundle#end()
 "setttings
 let mapleader=","
 set hlsearch
-set nu
+set nu rnu
 set splitbelow
 set splitright
 set clipboard=unnamed
 set term=screen-256color
+nnoremap <leader>1 :set rnu!<CR>
 set pastetoggle=<leader>2
 nnoremap <leader>4 :nohl<CR> 
 
