@@ -30,6 +30,9 @@ ln -s ~/.vim/bundle/vim-flake8/ftplugin ~/.vim/bundle/vim-flake8/plugin
 sudo apt-get install nodejs npm
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 
+# install js-beautify
+sudo npm -g install js-beautify
+
 python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --ts-completer
 
 # git
