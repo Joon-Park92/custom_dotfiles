@@ -45,25 +45,15 @@ chsh -s $(which zsh)
 
 # pyenv
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-
-cat >> ~/.zshrc << 'EOL'
+cat >> ~/.zshrc << EOL
 # pyenv configuration.              
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"              
 eval "$(pyenv virtualenv-init -)"                                       
-
-# For compilers to find zlib you may need to set:                            
-export LDFLAGS="${LDFLAGS} -L/usr/local/opt/zlib/lib"                        
-export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/zlib/include"                                                                                               
-
-# For pkg-config to find zlib you may need to set:                           
-export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/zlib/lib/pkgconfig"                                                                             
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1                                     
 EOL                                 
 
 # install dependencies for python-build
 sudo apt-get install build-essential libreadline-dev zlib1g-dev libbz2-dev libsqlite3-dev libssl-dev
 
 # install python
-LDFLAGS=
 pyenv install 3.6.5
