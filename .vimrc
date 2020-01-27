@@ -22,6 +22,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mattn/emmet-vim'
 Plugin 'alvan/vim-closetag'
 Plugin 'maksimr/vim-jsbeautify'
+Plugin 'mileszs/ack.vim'
+Plugin 'Yggdroot/indentLine'
 
 " Plugin 'MarcWeber/vim-addon-mw-utils'
 " Plugin 'tomtom/tlib_vim'
@@ -87,8 +89,7 @@ au BufNewFile,BufRead *.py set fileformat=unix
 
 
 "For fullstack developer
-autocmd FileType c,cpp setlocal expandtab shiftwidth=2 softtabstop=2 cindent
-
+autocmd FileType c,cpp,sql setlocal expandtab shiftwidth=2 softtabstop=2 cindent
 
 au BufNewFile,BufRead *.js,*.html,*.css set tabstop=2
 au BufNewFile,BufRead *.js,*.html,*.css set softtabstop=2
@@ -224,3 +225,4 @@ let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+nnoremap <Leader>a :Ack!<Space>
