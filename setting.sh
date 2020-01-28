@@ -50,7 +50,8 @@ cat >> ~/.zshrc << 'EOL'
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"              
 eval "$(pyenv virtualenv-init -)"                                       
-EOL                                 
+
+EOL
 
 # install dependencies for python-build
 sudo apt-get install build-essential libreadline-dev zlib1g-dev libbz2-dev libsqlite3-dev libssl-dev
