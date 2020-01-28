@@ -45,7 +45,7 @@ chsh -s $(which zsh)
 
 # pyenv
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-cat >> ~/.zshrc << EOL
+cat >> ~/.zshrc << 'EOL'
 # pyenv configuration.              
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"              
