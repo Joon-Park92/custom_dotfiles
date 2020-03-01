@@ -42,6 +42,7 @@ set splitbelow
 set splitright
 set clipboard=unnamed
 set term=screen-256color
+set nowrap
 nnoremap <leader>1 :set rnu!<CR>
 set pastetoggle=<leader>2
 nnoremap <leader>4 :nohl<CR> 
