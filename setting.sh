@@ -43,13 +43,20 @@ cp ~/custom_dotfiles/.gitconfig ~/.gitconfig
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 chsh -s $(which zsh)
 
+git clone https://github.com/zdharma/fast-syntax-highlighting ~/.zsh/zsh-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+
 # pyenv
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-cat >> ~/.zshrc << 'EOL'
+
+cat >> ~/.zshrc << EOL
+
 # pyenv configuration.              
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"              
 eval "$(pyenv virtualenv-init -)"                                       
+source ~/.zsh/zsh-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 EOL
 

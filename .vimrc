@@ -40,9 +40,9 @@ set hlsearch
 set nu rnu
 set splitbelow
 set splitright
+set nowrap
 set clipboard=unnamed
 set term=screen-256color
-set nowrap
 nnoremap <leader>1 :set rnu!<CR>
 set pastetoggle=<leader>2
 nnoremap <leader>4 :nohl<CR> 
@@ -90,11 +90,11 @@ au BufNewFile,BufRead *.py set fileformat=unix
 
 
 "For fullstack developer
-autocmd FileType c,cpp,sql setlocal expandtab shiftwidth=2 softtabstop=2 cindent
+autocmd FileType c,cpp,sql setlocal expandtab shiftwidth=4 softtabstop=4 cindent
 
-au BufNewFile,BufRead *.js,*.html,*.css set tabstop=2
-au BufNewFile,BufRead *.js,*.html,*.css set softtabstop=2
-au BufNewFile,BufRead *.js,*.html,*.css set shiftwidth=2
+au BufNewFile,BufRead *.js,*.html,*.css set tabstop=4
+au BufNewFile,BufRead *.js,*.html,*.css set softtabstop=4
+au BufNewFile,BufRead *.js,*.html,*.css set shiftwidth=4
 au BufNewFile,BufRead *.js,*.html,*.css set expandtab
 au BufNewFile,BufRead *.js,*.html,*.css set autoindent
 
@@ -227,3 +227,6 @@ autocmd FileType html,css EmmetInstall
 
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 nnoremap <Leader>a :Ack!<Space>
+
+let g:indentLine_char = '▏'
+nnoremap <leader>44 :IndentLinesToggle<CR>
