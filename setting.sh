@@ -49,14 +49,12 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosugges
 # pyenv
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
 
-cat >> ~/.zshrc << EOL
+cat >> ~/.zshrc << 'EOL'
 
 # pyenv configuration.              
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"              
 eval "$(pyenv virtualenv-init -)"                                       
-source ~/.zsh/zsh-highlighting/fast-syntax-highlighting.plugin.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 EOL
 
@@ -64,4 +62,5 @@ EOL
 sudo apt-get install build-essential libreadline-dev zlib1g-dev libbz2-dev libsqlite3-dev libssl-dev
 
 # install python
+source ~/.zshrc
 pyenv install 3.6.5
