@@ -1,5 +1,4 @@
 set nocompatible              " required
-filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -8,44 +7,49 @@ call vundle#begin()
 Plugin 'jnurmine/Zenburn'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'Yggdroot/indentLine'
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'scrooloose/nerdtree'
+Plugin 'preservim/nerdtree'
 Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'ervandew/supertab'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
+Plugin 'vim-gitgutter'
 Plugin 'tpope/vim-surround'
+
 Plugin 'nvie/vim-flake8'
 
-Plugin 'exvim/ex-matchit'
-Plugin 'pangloss/vim-javascript'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
+Plugin 'matchit.zip'
 Plugin 'mattn/emmet-vim'
 Plugin 'alvan/vim-closetag'
+Plugin 'pangloss/vim-javascript'
 Plugin 'maksimr/vim-jsbeautify'
-Plugin 'mileszs/ack.vim'
-Plugin 'Yggdroot/indentLine'
+Plugin 'mxw/vim-jsx'
 
-" Plugin 'MarcWeber/vim-addon-mw-utils'
-" Plugin 'tomtom/tlib_vim'
-" Plugin 'garbas/vim-snipmate'
-" Plugin 'ervandew/supertab'
-" Plugin 'lambdalisue/vim-pyenv'
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 
 
-"setttings
+" basic setttings
 let mapleader=","
 set hlsearch
 set nu rnu
 set splitbelow
 set splitright
-set nowrap
+" set nowrap
+" set linebreak
 set clipboard=unnamed
 set term=screen-256color
+set encoding=utf-8
+
 nnoremap <leader>1 :set rnu!<CR>
 set pastetoggle=<leader>2
-nnoremap <leader>4 :nohl<CR> 
 
 " move row unit
 " noremap j gj
@@ -56,7 +60,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
 
 " buffer setting
 set hidden
@@ -73,46 +76,27 @@ nnoremap g<S-t> :bprevious<CR>
 " enable folding
 set foldmethod=indent
 set foldlevel=99
-"enable folding with the spacebar
-nnoremap <space> za
 "see the docstrings for folded code:
 let g:SimpylFold_docstring_preview=0
+"enable folding with the spacebar
+nnoremap <space> za
 
-
-"PEP 8 python indentation
-au BufNewFile,BufRead *.py set tabstop=4
-au BufNewFile,BufRead *.py set softtabstop=4
-au BufNewFile,BufRead *.py set shiftwidth=4
-au BufNewFile,BufRead *.py set textwidth=79
-au BufNewFile,BufRead *.py set expandtab
-au BufNewFile,BufRead *.py set autoindent
-au BufNewFile,BufRead *.py set fileformat=unix
-
+" indentation
+let g:indentLine_char = '|'
+nnoremap <leader>44 :IndentLinesToggle<CR>
 
 "For fullstack developer
-autocmd FileType c,cpp,sql setlocal expandtab shiftwidth=4 softtabstop=4 cindent
+set expandtab
 
-au BufNewFile,BufRead *.js,*.html,*.css set tabstop=4
-au BufNewFile,BufRead *.js,*.html,*.css set softtabstop=4
-au BufNewFile,BufRead *.js,*.html,*.css set shiftwidth=4
-au BufNewFile,BufRead *.js,*.html,*.css set expandtab
-au BufNewFile,BufRead *.js,*.html,*.css set autoindent
-
-
-au BufNewFile,BufRead *.sh set tabstop=2
-au BufNewFile,BufRead *.sh set softtabstop=2
-au BufNewFile,BufRead *.sh set shiftwidth=2
-au BufNewFile,BufRead *.sh set expandtab
-au BufNewFile,BufRead *.sh set autoindent
-
+au FileType c,cpp,sql setlocal shiftwidth=4 softtabstop=4 cindent
+au FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 softtabstop=4 expandtab textwidth=79 autoindent fileformat=unix
+au FileType javascript,css,json setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
+au BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
+au BufNewFile,BufRead *.sh setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
 
 "Flagging unnecessary whitespace
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.cpp match BadWhitespace /\s\+$/
-
-
-"utf-8 support
-set encoding=utf-8
 
 "Syntax Checking/Highlighting
 syntax on
@@ -127,26 +111,48 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_loc_list_height = 1 " max error line
 let g:syntastic_python_checkers = ['python']
-" let g:syntastic_python_checkers = ['pylint']
 
-" flake-8
+" flake-8 options
 " nnoremap <leader>c :so ~/.vim/bundle/vim-flake8/ftplugin/python_flake8.vim<CR> \| :call flake8#Flake8()<CR>
 nnoremap <leader>c :call flake8#Flake8()<CR>
 nnoremap <leader>cc :call flake8#Flake8UnplaceMarkers()<CR>
-let g:flake8_quickfix_height=4
+let g:flake8_quickfix_height=1
 let g:flake8_show_in_file=1   " show
 let g:flake8_max_markers=500  " maximum # of markers to show(500 is default)
 
 " colorscheme
-set t_Co=256
+" set t_Co=256
 silent! colorscheme zenburn
 
-
 " NERDTree options
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+
+" key binding
 nmap <C-f> :NERDTreeFind<CR>
 nmap <C-n> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__'] "ignore files in NERDTree
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
+"ignore files in NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__'] 
 
 " "SuperTab
 " let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
@@ -157,12 +163,6 @@ let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__'] "ignore files in NERDTree
 " let g:ycm_autoclose_preview_window_after_completion = 0
 
 
-" Airline options
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_theme='simple'
-
 " CtrlP options
 "ignore redundant directiories
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
@@ -171,9 +171,9 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$\|__pycache__$',
   \ 'file': '\v\.(exe|so|dll)$'
   \ }
-nmap <leader>bb :CtrlPBuffer<cr>
-nmap <leader>bm :CtrlPMixed<cr>
-nmap <leader>bs :CtrlPMRU<cr>
+nmap <leader>bb :CtrlPBuffer<CR>
+nmap <leader>bm :CtrlPMixed<CR>
+nmap <leader>bs :CtrlPMRU<CR>
 
 " YCM options
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
@@ -223,10 +223,25 @@ let g:user_emmet_mode='n'    "only enable normal mode functions.
 " let g:user_emmet_mode='inv'  "enable all functions, which is equal to
 " let g:user_emmet_mode='a'    "enable all function in all mode.
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+
+au FileType html,css EmmetInstall
 
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 nnoremap <Leader>a :Ack!<Space>
+filetype plugin indent on
 
-let g:indentLine_char = '▏'
-nnoremap <leader>44 :IndentLinesToggle<CR>
+" Airline options
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_theme='simple'
+
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ghu <Plug>(GitGutterUndoHunk)
+nmap ghp <Plug>(GitGutterPreviewHunk)
+
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+set statusline+=%{GitStatus()}
