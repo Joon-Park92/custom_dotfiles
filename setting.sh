@@ -54,13 +54,11 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosugges
 # pyenv
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
 
-cat >> ~/.zshrc << 'EOL'
-
+cat >> ~/.zshrc <<EOL
 # pyenv configuration.              
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"              
 eval "$(pyenv virtualenv-init -)"                                       
-
 EOL
 
 # install python
