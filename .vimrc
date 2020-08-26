@@ -31,7 +31,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mxw/vim-jsx'
 
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
+Plugin 'udalov/kotlin-vim'
 
 call vundle#end()
 
@@ -93,6 +94,10 @@ au FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 softtabstop=4 e
 au FileType javascript,css,json setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
 au BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
 au BufNewFile,BufRead *.sh setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
+au BufNewFile,BufRead Jenkinsfile setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
+au BufNewFile,BufRead Jenkinsfile setf groovy
+
+au BufNewFile,BufRead *.kt,*kts setf kotlin
 
 "Flagging unnecessary whitespace
 highlight BadWhitespace ctermbg=red guibg=darkred
@@ -164,7 +169,7 @@ let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 " let g:ycm_autoclose_preview_window_after_completion = 0
 
 
-" CtrlP options
+" CtrlP config
 "ignore redundant directiories
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_working_path_mode = 'r'
@@ -185,6 +190,36 @@ let g:ycm_key_list_previous_completion = ['<C-k>', '<s-tab>']
 let g:ycm_error_symbol = '>>'
 let g:ycm_warning_symbol = '*>'
 let g:ycm_python_binary_path = 'python'
+
+" LSP servers
+let s:lsp = '~/.vim/lsp-examples'
+let g:ycm_language_server = [
+  \   {
+  \     'name': 'bash',
+  \     'cmdline': [ 'node', expand( s:lsp . '/bash/node_modules/.bin/bash-language-server' ), 'start' ],
+  \     'filetypes': [ 'sh', 'bash' ],
+  \   },
+  \   {
+  \     'name': 'yaml',
+  \     'cmdline': [ 'node', expand( s:lsp . '/yaml/node_modules/.bin/yaml-language-server' ), '--stdio' ],
+  \     'filetypes': [ 'yaml' ],
+  \   },
+  \   {
+  \     'name': 'json',
+  \     'cmdline': [ 'node', expand( s:lsp . '/json/node_modules/.bin/vscode-json-languageserver' ), '--stdio' ],
+  \     'filetypes': [ 'json' ],
+  \   },
+  \   {
+  \     'name': 'kotlin',
+  \     'filetypes': [ 'kotlin' ], 
+  \     'cmdline': [ expand( s:lsp . '/kotlin/server/build/install/server/bin/server' ) ],
+  \   },
+  \   {
+  \     'name': 'docker',
+  \     'filetypes': [ 'dockerfile' ],
+  \     'cmdline': [ expand( s:lsp . '/docker/node_modules/.bin/docker-langserver' ), '--stdio' ]
+  \   },
+  \ ]
 
 " let g:ycm_autoclose_preview_window_after_completion = 1
 " let g:ycm_min_num_of_chars_for_completion = 1
@@ -220,6 +255,7 @@ nnoremap <leader>n :YcmCompleter GoToReferences<CR>
 " let g:html_indent_style1 = "inc"
 " let g:html_indent_inctags = "address,article,aside,audio,blockquote,canvas,dd,div,dl,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,hr,main,nav,noscript,ol,output,p,pre,section,table,tfoot,ul,video"
 
+" emmet
 let g:user_emmet_mode='n'    "only enable normal mode functions.
 " let g:user_emmet_mode='inv'  "enable all functions, which is equal to
 " let g:user_emmet_mode='a'    "enable all function in all mode.
@@ -237,6 +273,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='simple'
 
+" gitgutter
 nmap ghs <Plug>(GitGutterStageHunk)
 nmap ghu <Plug>(GitGutterUndoHunk)
 nmap ghp <Plug>(GitGutterPreviewHunk)
@@ -247,6 +284,7 @@ function! GitStatus()
 endfunction
 set statusline+=%{GitStatus()}
 
+" vim-ack silver searcher
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
