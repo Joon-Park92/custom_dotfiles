@@ -28,8 +28,8 @@ Plugin 'matchit.zip'
 Plugin 'mattn/emmet-vim'
 Plugin 'alvan/vim-closetag'
 Plugin 'pangloss/vim-javascript'
-Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mxw/vim-jsx'
+Plugin 'maksimr/vim-jsbeautify'
 
 " Plugin 'fatih/vim-go'
 Plugin 'udalov/kotlin-vim'
@@ -148,7 +148,6 @@ call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
 call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 " key binding
@@ -218,6 +217,11 @@ let g:ycm_language_server = [
   \     'name': 'docker',
   \     'filetypes': [ 'dockerfile' ],
   \     'cmdline': [ expand( s:lsp . '/docker/node_modules/.bin/docker-langserver' ), '--stdio' ]
+  \   },
+  \   {
+  \     'name': 'vim',
+  \     'filetypes': [ 'vim' ],
+  \     'cmdline': [ expand( s:lsp . '/viml/node_modules/.bin/vim-language-server' ), '--stdio' ]
   \   },
   \ ]
 
