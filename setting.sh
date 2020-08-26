@@ -65,7 +65,7 @@ sudo apt install openjdk-8-jdk openjdk-8-jre
 
 # build YCM
 python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --ts-completer --go-completer --java-completer
-python3 ~/.vim/lsp-examples/install.py --enable-kotlin --enable-docker --enbale-bash --enable-yaml --enable-json
+python3 ~/.vim/lsp-examples/install.py --enable-kotlin --enable-docker --enbale-bash --enable-yaml --enable-json --enable-vim
 
 # install pyenv
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
