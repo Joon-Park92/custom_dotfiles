@@ -15,6 +15,9 @@ git clone https://github.com/Joon-Park92/custom_dotfiles.git ~/custom_dotfiles
 # Vundle
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
+# install extra lsp servers
+git clone https://github.com/ycm-core/lsp-examples.git ~/.vim/lsp-examples
+
 # vim setting
 cp ~/custom_dotfiles/.vimrc ~/.vimrc
 touch ~/.vimrc
@@ -62,6 +65,7 @@ sudo apt install openjdk-8-jdk openjdk-8-jre
 
 # build YCM
 python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --ts-completer --go-completer --java-completer
+python3 ~/.vim/lsp-examples/install.py --enable-kotlin --enable-docker --enbale-bash --enable-yaml --enable-json
 
 # install pyenv
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
