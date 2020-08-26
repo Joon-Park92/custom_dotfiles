@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # install basic tools
 apt-get install sudo
 sudo apt-get update -y
