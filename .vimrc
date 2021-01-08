@@ -30,8 +30,9 @@ Plugin 'alvan/vim-closetag'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'maksimr/vim-jsbeautify'
+Plugin 'Chiel92/vim-autoformat'
 
-" Plugin 'fatih/vim-go'
+Plugin 'fatih/vim-go'
 Plugin 'udalov/kotlin-vim'
 
 call vundle#end()
@@ -68,10 +69,10 @@ set hidden
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nnoremap <leader>w :w<CR>
-nnoremap <leader>q :bp \| bd #<CR>
-nnoremap <leader>qq :q<CR>
-nnoremap gt :bnext<CR>
-nnoremap g<S-t> :bprevious<CR>
+" nnoremap <leader>q :bp \| bd #<CR>
+nnoremap <leader>q :q<CR>
+" nnoremap gt :bnext<CR>
+" nnoremap g<S-t> :bprevious<CR>
 
 
 " enable folding
@@ -115,14 +116,14 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_loc_list_height = 1 " max error line
-let g:syntastic_python_checkers = ['python']
+let g:syntastic_python_checkers = ['python', 'flake8']
 
 " flake-8 options
 " nnoremap <leader>c :so ~/.vim/bundle/vim-flake8/ftplugin/python_flake8.vim<CR> \| :call flake8#Flake8()<CR>
 nnoremap <leader>c :call flake8#Flake8()<CR>
 nnoremap <leader>cc :call flake8#Flake8UnplaceMarkers()<CR>
-let g:flake8_quickfix_height=1
-let g:flake8_show_in_file=1   " show
+let g:flake8_quickfix_height=5
+let g:flake8_show_in_file=5   " show
 let g:flake8_max_markers=500  " maximum # of markers to show(500 is default)
 
 " colorscheme
@@ -292,3 +293,7 @@ set statusline+=%{GitStatus()}
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+" auto-formatting
+let g:python3_host_prog="/home/sean/anaconda3/bin/python"
+l
