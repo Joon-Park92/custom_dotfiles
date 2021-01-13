@@ -4,34 +4,37 @@ set nocompatible              " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" basic
 Plugin 'jnurmine/Zenburn'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'Yggdroot/indentLine'
-Plugin 'tmhedberg/SimpylFold'
 Plugin 'preservim/nerdtree'
-Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
-Plugin 'ervandew/supertab'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Konfekt/FastFold'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'Yggdroot/indentLine'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'ervandew/supertab'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'Valloric/YouCompleteMe'
+
+" vcs 
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-gitgutter'
-Plugin 'tpope/vim-surround'
-
-Plugin 'nvie/vim-flake8'
 
 Plugin 'godlygeek/tabular'
+Plugin 'tpope/vim-surround'
 Plugin 'plasticboy/vim-markdown'
 
+" wed-developer
 Plugin 'matchit.zip'
 Plugin 'mattn/emmet-vim'
 Plugin 'alvan/vim-closetag'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'Chiel92/vim-autoformat'
 
+" go / kotlin
 Plugin 'fatih/vim-go'
 Plugin 'udalov/kotlin-vim'
 
@@ -49,9 +52,6 @@ set splitright
 set clipboard=unnamed
 set term=screen-256color
 set encoding=utf-8
-
-nnoremap <leader>1 :set rnu!<CR>
-set pastetoggle=<leader>2
 
 " move row unit
 " noremap j gj
@@ -73,6 +73,7 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 " nnoremap gt :bnext<CR>
 " nnoremap g<S-t> :bprevious<CR>
+set pastetoggle=<F2>
 
 
 " enable folding
@@ -84,7 +85,10 @@ let g:SimpylFold_docstring_preview=0
 nnoremap <space> za
 
 " indentation
-let g:indentLine_char = '|'
+let g:indentLine_color_term = 245
+let g:indentLine_concealcursor = 'inc'
+let g:indentLine_conceallevel = 2
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 nnoremap <leader>44 :IndentLinesToggle<CR>
 
 "For fullstack developer
@@ -118,14 +122,6 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_loc_list_height = 1 " max error line
 let g:syntastic_python_checkers = ['python', 'flake8']
 
-" flake-8 options
-" nnoremap <leader>c :so ~/.vim/bundle/vim-flake8/ftplugin/python_flake8.vim<CR> \| :call flake8#Flake8()<CR>
-nnoremap <leader>c :call flake8#Flake8()<CR>
-nnoremap <leader>cc :call flake8#Flake8UnplaceMarkers()<CR>
-let g:flake8_quickfix_height=5
-let g:flake8_show_in_file=5   " show
-let g:flake8_max_markers=500  " maximum # of markers to show(500 is default)
-
 " colorscheme
 " set t_Co=256
 silent! colorscheme zenburn
@@ -154,8 +150,8 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 " key binding
 nmap <C-f> :NERDTreeFind<CR>
 nmap <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable = '→'
+let g:NERDTreeDirArrowCollapsible = '↓'
 
 "ignore files in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__'] 
@@ -174,9 +170,10 @@ let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$\|__pycache__$',
+  \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$\|__pycache__$\|data$',
   \ 'file': '\v\.(exe|so|dll)$'
   \ }
+
 nmap <leader>bb :CtrlPBuffer<CR>
 nmap <leader>bm :CtrlPMixed<CR>
 nmap <leader>bs :CtrlPMRU<CR>
@@ -236,6 +233,7 @@ nnoremap <leader>d :YcmCompleter GoTo<CR>
 nnoremap K :YcmCompleter GetDoc<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
 nnoremap <leader>n :YcmCompleter GoToReferences<CR>
+nnoremap <leader>r :YcmCompleter RefactorRename 
 
 " nnoremap <leader>g :tabnew \| YcmCompleter GoTo<CR>
 " nnoremap <leader>d :YcmCompleter GoToDefinition<CR>
@@ -273,10 +271,11 @@ nnoremap <Leader>a :Ack!<Space>
 filetype plugin indent on
 
 " Airline options
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_theme='simple'
+let g:airline_theme='dark'
 
 " gitgutter
 nmap ghs <Plug>(GitGutterStageHunk)
@@ -294,6 +293,6 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-" auto-formatting
-let g:python3_host_prog="/home/sean/anaconda3/bin/python"
-l
+" formatters
+noremap <F3> :Autoformat<CR>
+let g:formatters_python = ['black']
