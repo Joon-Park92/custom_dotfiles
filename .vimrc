@@ -89,20 +89,25 @@ let g:indentLine_color_term = 245
 let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 2
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-nnoremap <leader>44 :IndentLinesToggle<CR>
+nnoremap <leader>3 :IndentLinesToggle<CR>
 
 "For fullstack developer
 set expandtab
 
 au FileType c,cpp,sql setlocal shiftwidth=4 softtabstop=4 cindent
-au FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 softtabstop=4 expandtab textwidth=79 autoindent fileformat=unix
+au FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 softtabstop=4 textwidth=79 autoindent fileformat=unix
 au FileType javascript,css,json setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
+au FileType yaml setlocal ts=2 sts=2 sw=2
+
 au BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
 au BufNewFile,BufRead *.sh setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
 au BufNewFile,BufRead Jenkinsfile setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
-au BufNewFile,BufRead Jenkinsfile setf groovy
 
+au BufNewFile,BufRead Jenkinsfile setf groovy
 au BufNewFile,BufRead *.kt,*kts setf kotlin
+
+" mlflow setting
+au BufNewFile,BufRead MLproject setf yaml
 
 "Flagging unnecessary whitespace
 highlight BadWhitespace ctermbg=red guibg=darkred
@@ -239,24 +244,6 @@ nnoremap <leader>r :YcmCompleter RefactorRename
 " nnoremap <leader>d :YcmCompleter GoToDefinition<CR>
 " nnoremap <leader>d :YcmCompleter GoToDeclaration<CR>
 " nnoremap <leader>p :YcmCompleter GetParent<CR>
-
-" set conceallevel=2
-" set concealcursor=vin
-" let g:clang_snippets=1
-" let g:clang_conceal_snippets=1
-" " The single one that works with clang_complete
-" let g:clang_snippets_engine='clang_complete'
-" 
-" " Complete options (disable preview scratch window, longest removed to aways
-" " show menu)
-" set completeopt=menu,menuone
-" 
-" " Limit popup menu height
-" set pumheight=20
-
-" let g:html_indent_script1 = "inc"
-" let g:html_indent_style1 = "inc"
-" let g:html_indent_inctags = "address,article,aside,audio,blockquote,canvas,dd,div,dl,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,hr,main,nav,noscript,ol,output,p,pre,section,table,tfoot,ul,video"
 
 " emmet
 let g:user_emmet_mode='n'    "only enable normal mode functions.
