@@ -66,8 +66,15 @@ cp ~/custom_dotfiles/.editorconfig ~/.vim/
 # build YCM
 python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --ts-completer --go-completer --java-completer
 python3 ~/.vim/lsp-examples/install.py --enable-kotlin --enable-docker --enbale-bash --enable-yaml --enable-json --enable-vim
-python3 -m pip --user install black
+python3 -m pip -U install black, flake8
 
 # install anaconda
 wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
 bash ./Anaconda3-2020.11-Linux-x86_64.sh
+
+# custom commands
+cat >> ~/.bashrc << _EOF_
+pvim(){ PYTHONPATH=$PYTHONPATH:$PWD vim ;}
+pytest() { python -m pytest ;}
+gst(){ git status ;}
+_EOF_
