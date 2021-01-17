@@ -18,6 +18,7 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'ervandew/supertab'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'taglist.vim'
 
 " vcs 
 Plugin 'tpope/vim-fugitive'

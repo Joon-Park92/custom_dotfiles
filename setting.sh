@@ -6,7 +6,7 @@ sudo apt-get update -y
 sudo apt-get install -y wget curl vim git tmux
 
 # install utilities
-sudo apt-get install -y silversearcher-ag tree
+sudo apt-get install -y silversearcher-ag tree ctags
 
 # install dependencies for python-build ( for YCM build )
 sudo apt-get install -y build-essential libreadline-dev zlib1g-dev libbz2-dev libsqlite3-dev libssl-dev cmake python3-dev
@@ -27,7 +27,7 @@ _EOF_
 # install java
 sudo apt install openjdk-8-jdk openjdk-8-jre
 cat >> /etc/environment << _EOF_
-# add java path
+# Add java path
 JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 _EOF_
@@ -39,29 +39,26 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/ycm-core/lsp-examples.git ~/.vim/lsp-examples
 
 # vim setting
-cp ~/custom_dotfiles/.vimrc ~/.vimrc
+ln -s ~/custom_dotfiles/.vimrc ~/.vimrc
 vim +PluginInstall +qall 
 
 # YCM config
-cp ~/custom_dotfiles/.ycm_extra_conf.py ~/.vim/.ycm_extra_conf.py
+ln -s ~/custom_dotfiles/.ycm_extra_conf.py ~/.vim/.ycm_extra_conf.py
 
 # tmux config
-cp ~/custom_dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/custom_dotfiles/.tmux.conf ~/.tmux.conf
 
 # git config
-cp ~/custom_dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/custom_dotfiles/.gitconfig ~/.gitconfig
 
 # editorconfig
-cp ~/custom_dotfiles/.editorconfig ~/.vim/
+ln -s ~/custom_dotfiles/.editorconfig ~/.vim/
 
 # zsh
 # wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 # chsh -s $(which zsh)
 # git clone https://github.com/zdharma/fast-syntax-highlighting ~/.zsh/zsh-highlighting
 # git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-
-# flake-8 dir remapping
-# ln -s ~/.vim/bundle/vim-flake8/ftplugin ~/.vim/bundle/vim-flake8/plugin
 
 # build YCM
 python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --ts-completer --go-completer --java-completer
@@ -73,8 +70,10 @@ wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
 bash ./Anaconda3-2020.11-Linux-x86_64.sh
 
 # custom commands
-cat >> ~/.bashrc << _EOF_
-pvim(){ PYTHONPATH=$PYTHONPATH:$PWD vim ;}
-pytest() { python -m pytest ;}
-gst(){ git status ;}
+cat >> ~/.bashrc <<- '_EOF_'
+	export PATH="/home/sean/.local/bin:$PATH"
+	
+	pvim(){ PYTHONPATH=$PYTHONPATH:$PWD vim ;}
+	pytest() { python -m pytest ;}
+	gst(){ git status ;}
 _EOF_
