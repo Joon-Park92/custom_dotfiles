@@ -14,6 +14,14 @@ sudo apt-get install -y build-essential libreadline-dev zlib1g-dev libbz2-dev li
 # install node & npm
 sudo apt-get install -y nodejs npm
 sudo ln -s /usr/bin/nodejs /usr/bin/node
+
+# install nvm
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+cat >> ~/.bashrc << '_EOF_'
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+_EOF_
+
 sudo npm -g install js-beautify
 sudo npm -g install html-beautify
 
@@ -66,8 +74,7 @@ python3 ~/.vim/lsp-examples/install.py --enable-kotlin --enable-docker --enbale-
 python3 -m pip -U install black, flake8
 
 # install anaconda
-wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
-bash ./Anaconda3-2020.11-Linux-x86_64.sh
+wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh | bash
 
 # custom commands
 cat >> ~/.bashrc <<- '_EOF_'
