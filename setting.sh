@@ -78,7 +78,8 @@ wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh | bash
 
 # custom commands
 cat >> ~/.bashrc <<- '_EOF_'
-	export PATH="/home/sean/.local/bin:$PATH"
+  export PATH="$HOME/bin:$PATH"
+	export PATH="$HOME/.local/bin:$PATH"
 	
 	pvim(){ PYTHONPATH=$PYTHONPATH:$PWD vim ;}
 	pytest() { python -m pytest ;}
