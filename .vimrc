@@ -174,6 +174,8 @@ let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 " CtrlP config
 "ignore redundant directiories
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPBuffer'
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$\|__pycache__$\|data$',
