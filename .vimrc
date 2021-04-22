@@ -20,6 +20,9 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'taglist.vim'
 
+" python
+Plugin 'fisadev/vim-isort'
+
 " vcs 
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-gitgutter'
@@ -36,7 +39,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
 " go / kotlin
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 Plugin 'udalov/kotlin-vim'
 
 call vundle#end()
@@ -53,6 +56,7 @@ set splitright
 set clipboard=unnamed
 set term=screen-256color
 set encoding=utf-8
+set backspace=indent,eol,start
 
 " move row unit
 " noremap j gj
@@ -72,6 +76,8 @@ set hidden
 nnoremap <leader>w :w<CR>
 " nnoremap <leader>q :bp \| bd #<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <S-l> :bnext<CR>
+nnoremap <S-h> :bprevious<CR>
 " nnoremap gt :bnext<CR>
 " nnoremap g<S-t> :bprevious<CR>
 set pastetoggle=<F2>
@@ -95,7 +101,7 @@ nnoremap <leader>3 :IndentLinesToggle<CR>
 "For fullstack developer
 set expandtab
 
-au FileType c,cpp,sql setlocal shiftwidth=4 softtabstop=4 cindent
+au FileType c,cpp,sql,java setlocal shiftwidth=4 softtabstop=4 cindent
 au FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 softtabstop=4 textwidth=79 autoindent fileformat=unix
 au FileType javascript,css,json setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
 au FileType yaml setlocal ts=2 sts=2 sw=2
@@ -122,11 +128,15 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0 " 1 auto open
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_loc_list_height = 1 " max error line
 let g:syntastic_python_checkers = ['python', 'flake8']
+let g:syntastic_aggregate_errors = 1
+
+nnoremap ]q :lnext<CR>
+nnoremap [q :lprev<CR>
 
 " colorscheme
 " set t_Co=256
@@ -175,7 +185,7 @@ let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 "ignore redundant directiories
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPBuffer'
+" let g:ctrlp_cmd = 'CtrlPBuffer'
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$\|__pycache__$\|data$',
@@ -217,7 +227,7 @@ let g:ycm_language_server = [
   \   {
   \     'name': 'kotlin',
   \     'filetypes': [ 'kotlin' ], 
-  \     'cmdline': [ expand( s:lsp . '/kotlin/server/build/install/server/bin/server' ) ],
+  \     'cmdline': [ expand( s:lsp . '/kotlin/server/build/install/server/bin/kotlin-language-server' ) ],
   \   },
   \   {
   \     'name': 'docker',
@@ -236,8 +246,9 @@ let g:ycm_language_server = [
 " let g:ycm_confirm_extra_conf = 0
 " let g:ycm_key_list_select_completion = ['', '']
 " let g:ycm_key_list_previous_completion = ['', '']
-
-nnoremap <leader>d :YcmCompleter GoTo<CR>
+let g:ycm_goto_buffer_command = 'split-or-existing-window'
+nnoremap <leader>d :rightbelow vertical YcmCompleter GoTo<CR>
+" nnoremap <leader>d :YcmCompleter GoTo<CR>
 nnoremap K :YcmCompleter GetDoc<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
 nnoremap <leader>n :YcmCompleter GoToReferences<CR>
@@ -265,7 +276,9 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
+
 let g:airline_theme='dark'
+
 
 " gitgutter
 nmap ghs <Plug>(GitGutterStageHunk)
@@ -284,5 +297,8 @@ if executable('ag')
 endif
 
 " formatters
+let g:vim_isort_map = '<C-i>'
+let g:vim_isort_python_version = 'python3'
+
 noremap <F3> :Autoformat<CR>
 let g:formatters_python = ['black']
