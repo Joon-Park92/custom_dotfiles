@@ -18,7 +18,7 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'ervandew/supertab'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'taglist.vim'
+Plugin 'preservim/tagbar'
 
 " python
 Plugin 'fisadev/vim-isort'
@@ -75,7 +75,7 @@ set hidden
 " This replicates the idea of closing a tab
 nnoremap <leader>w :w<CR>
 " nnoremap <leader>q :bp \| bd #<CR>
-nnoremap <leader>q :q<CR>
+nnoremap <leader>q <C-W>c
 nnoremap <S-l> :bnext<CR>
 nnoremap <S-h> :bprevious<CR>
 " nnoremap gt :bnext<CR>
@@ -182,11 +182,13 @@ let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 
 
 " CtrlP config
-"ignore redundant directiories
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_map = '<c-p>'
-" let g:ctrlp_cmd = 'CtrlPBuffer'
+let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_regexp = 1
 let g:ctrlp_working_path_mode = 'r'
+"
+"ignore redundant directiories
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.csv,*.sqlite3
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$\|__pycache__$\|data$',
   \ 'file': '\v\.(exe|so|dll)$'
@@ -296,9 +298,19 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+let g:ackhighlight = 1
+let g:ack_autofold_results = 1
+
 " formatters
 let g:vim_isort_map = '<C-i>'
 let g:vim_isort_python_version = 'python3'
 
 noremap <F3> :Autoformat<CR>
 let g:formatters_python = ['black']
+
+" tagbar
+let g:tagbar_width = 60
+let g:tagbar_autofocus = 1
+let g:tagbar_autoshowtag = 1
+nmap <F8> :TagbarToggle<CR>
+nmap <C-m> :TagbarToggle<CR>
