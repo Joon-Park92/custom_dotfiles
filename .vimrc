@@ -22,7 +22,8 @@ Plugin 'preservim/tagbar'
 
 " python
 Plugin 'fisadev/vim-isort'
-
+" Plugin python-mode/python-mode
+"
 " vcs 
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-gitgutter'
@@ -47,11 +48,12 @@ call vundle#end()
 
 " basic setttings
 let mapleader=","
+set expandtab
 set hlsearch
 set nu rnu
 set splitbelow
 set splitright
-" set nowrap
+set nowrap
 " set linebreak
 set clipboard=unnamed
 set term=screen-256color
@@ -59,8 +61,8 @@ set encoding=utf-8
 set backspace=indent,eol,start
 
 " move row unit
-" noremap j gj
-" noremap k gk
+noremap j gj
+noremap k gk
 
 " split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -99,7 +101,6 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 nnoremap <leader>3 :IndentLinesToggle<CR>
 
 "For fullstack developer
-set expandtab
 
 au FileType c,cpp,sql,java setlocal shiftwidth=4 softtabstop=4 cindent
 au FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 softtabstop=4 textwidth=79 autoindent fileformat=unix
@@ -131,8 +132,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0 " 1 auto open
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height = 1 " max error line
-let g:syntastic_python_checkers = ['python', 'flake8']
+let g:syntastic_loc_list_height = 5 " max error line
+let g:syntastic_python_checkers = ['python3', 'flake8']
 let g:syntastic_aggregate_errors = 1
 
 nnoremap ]q :lnext<CR>
@@ -249,6 +250,7 @@ let g:ycm_language_server = [
 " let g:ycm_key_list_select_completion = ['', '']
 " let g:ycm_key_list_previous_completion = ['', '']
 let g:ycm_goto_buffer_command = 'split-or-existing-window'
+
 nnoremap <leader>d :rightbelow vertical YcmCompleter GoTo<CR>
 " nnoremap <leader>d :YcmCompleter GoTo<CR>
 nnoremap K :YcmCompleter GetDoc<CR>
@@ -278,7 +280,6 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
-
 let g:airline_theme='dark'
 
 
@@ -293,7 +294,7 @@ function! GitStatus()
 endfunction
 set statusline+=%{GitStatus()}
 
-" vim-ack silver searcher
+" vim-ack ( silver searcher )
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
@@ -313,4 +314,3 @@ let g:tagbar_width = 60
 let g:tagbar_autofocus = 1
 let g:tagbar_autoshowtag = 1
 nmap <F8> :TagbarToggle<CR>
-nmap <C-m> :TagbarToggle<CR>
