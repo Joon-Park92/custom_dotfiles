@@ -11,26 +11,38 @@ Plugin 'mileszs/ack.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kien/ctrlp.vim'
-Plugin 'Konfekt/FastFold'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'Yggdroot/indentLine'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'ervandew/supertab'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'preservim/tagbar'
+Plugin 'puremourning/vimspector'
 
-" python
-Plugin 'fisadev/vim-isort'
-" Plugin python-mode/python-mode
-"
+" fold
+Plugin 'Konfekt/FastFold'
+Plugin 'tmhedberg/SimpylFold'
+
 " vcs 
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-gitgutter'
 
+" utils
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'Yggdroot/indentLine'
+Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-surround'
 Plugin 'plasticboy/vim-markdown'
+
+" go
+Plugin 'sebdah/vim-delve'
+" Plugin 'fatih/vim-go'
+
+" python
+Plugin 'fisadev/vim-isort'
+" Plugin 'gotcha/vimpdb'
+" Plugin 'python-mode/python-mode'
+
+" kotlin
+Plugin 'udalov/kotlin-vim'
 
 " wed-developer
 Plugin 'matchit.zip'
@@ -39,9 +51,9 @@ Plugin 'alvan/vim-closetag'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
-" go / kotlin
-" Plugin 'fatih/vim-go'
-Plugin 'udalov/kotlin-vim'
+" config
+Plugin 'stephpy/vim-yaml'
+Plugin 'cespare/vim-toml'
 
 call vundle#end()
 
@@ -101,11 +113,10 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 nnoremap <leader>3 :IndentLinesToggle<CR>
 
 "For fullstack developer
-
 au FileType c,cpp,sql,java setlocal shiftwidth=4 softtabstop=4 cindent
 au FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 softtabstop=4 textwidth=79 autoindent fileformat=unix
 au FileType javascript,css,json setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
-au FileType yaml setlocal ts=2 sts=2 sw=2
+au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 au BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
 au BufNewFile,BufRead *.sh setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
@@ -299,8 +310,9 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+" let g:ackpreview = 1
+" let g:ack_autofold_results = 1
 let g:ackhighlight = 1
-let g:ack_autofold_results = 1
 
 " formatters
 let g:vim_isort_map = '<C-i>'
@@ -310,7 +322,10 @@ noremap <F3> :Autoformat<CR>
 let g:formatters_python = ['black']
 
 " tagbar
-let g:tagbar_width = 60
+let g:tagbar_width = 80
 let g:tagbar_autofocus = 1
 let g:tagbar_autoshowtag = 1
 nmap <F8> :TagbarToggle<CR>
+
+" debugger
+let g:vimspector_enable_mappings = 'HUMAN'
