@@ -262,7 +262,8 @@ let g:ycm_language_server = [
 " let g:ycm_key_list_previous_completion = ['', '']
 let g:ycm_goto_buffer_command = 'split-or-existing-window'
 
-nnoremap <leader>d :rightbelow vertical YcmCompleter GoTo<CR>
+" nnoremap <leader>d :rightbelow vertical YcmCompleter GoTo<CR>
+nnoremap <leader>d :YcmCompleter GoTo<CR>
 " nnoremap <leader>d :YcmCompleter GoTo<CR>
 nnoremap K :YcmCompleter GetDoc<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
@@ -327,5 +328,43 @@ let g:tagbar_autofocus = 1
 let g:tagbar_autoshowtag = 1
 nmap <F8> :TagbarToggle<CR>
 
+" " ctags update needed TT
+" let g:tagbar_type_kotlin = {
+"     \ 'ctagstype' : 'kotlin',
+"     \ 'ctagsbin' : 'ctags',
+"     \ 'kinds'     : [
+"         \ 'p:packages',
+"         \ 'i:interfaces',
+"         \ 'c:classes',
+"         \ 'o:objects',
+"         \ 'm:methods',
+"         \ 'T:typealiases',
+"         \ 'C:constant',
+"         \ 'v:variables'
+"     \ ],
+"     \'sro': '.',
+"     \'kind2scope' : {
+"         \ 'p' : 'packages',
+"         \ 'c' : 'class',
+"         \ 'o' : 'object',
+"         \ 'i' : 'interfaces',
+"         \ 'm' : 'methods',
+"         \ 'v' : 'variables',
+"         \ 'C' : 'constant',
+"     \},
+"     \'scope2kind' : {
+"         \ 'packages'   : 'p',
+"         \ 'class'      : 'c',
+"         \ 'object'     : 'o',
+"         \ 'interfaces' : 'i',
+"         \ 'methods'    : 'm',
+"         \ 'variables'  : 'v',
+"         \ 'constant'   : 'C',
+"     \ },
+"     \'replace': 1,
+"     \'sort' : 0, 
+"     \ }
+
 " debugger
-let g:vimspector_enable_mappings = 'HUMAN'
+packadd! vimspector
+" let g:vimspector_enable_mappings = 'HUMAN'
